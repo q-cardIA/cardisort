@@ -16,7 +16,7 @@ or
 If you find this code helpful in your research please cite the following paper:
 ```
 @article{lim2021cardisort,
-  title={Physics-informed neural networks for myocardial perfusion MRI quantification.},
+  title={CardiSort: a convolutional neural network for cross vendor automated sorting of cardiac MR images},
   author={Lim, Ruth P, and Kachel, Stefan, and Villa, Adriana DM, and Kearney, Leighton, and Bettencourt, Nuno, and Young, Alistair A, and Chiribiri, Amedeo,  and Scannell, Cian M},
   year={under review}
 }
