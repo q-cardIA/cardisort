@@ -5,9 +5,19 @@ This is a deep learning network which was developed to sort cardiac MRI images b
 
 Please find the pre-trained model weights [here](https://emckclac-my.sharepoint.com/:u:/g/personal/k1633520_kcl_ac_uk/EZ-7bZsMOCxEuCrCsoa7o2sBpBSJvuaHn9mIsgktnbvjvA?e=gCgzdh).
 
-The model can be run to sort a folder or DICOM images as:
+The model can be run to sort a folder of DICOM images as:
 
     >> python cardisort_inference.py [INPUT_FOLDER] 
 or    
 
     >> python cardisort_inference.py [INPUT_FOLDER] [OUTPUT_FOLDER]
+
+
+If you find this code helpful in your research please cite the following paper:
+```
+@article{lim2021cardisort,
+  title={Physics-informed neural networks for myocardial perfusion MRI quantification.},
+  author={Lim, Ruth P, and Kachel, Stefan, and Villa, Adriana DM, and Kearney, Leighton, and Bettencourt, Nuno, and Young, Alistair A, and Chiribiri, Amedeo,  and Scannell, Cian M},
+  year={under review}
+}
+```
