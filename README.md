@@ -11,6 +11,7 @@ The model can be run to sort a folder of DICOM images as:
 or    
 
     >> python cardisort_inference.py [INPUT_FOLDER] [OUTPUT_FOLDER]
+This assumes that the input folder contains only one CMR study from one patient.
 
 
 If you find this code helpful in your research please cite the following paper:
