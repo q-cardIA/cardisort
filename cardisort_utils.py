@@ -18,15 +18,24 @@ def get_files(the_dir):
     all_patient_items = os.listdir(the_dir)
     all_patient_items = [os.path.join(the_dir, p) for p in all_patient_items]
     for itm in all_patient_items:
-        if os.path.isfile(itm) and 'dicomdir' not in itm.lower():
+        if os.path.isfile(itm):
                 all_files.append(itm)
         if os.path.isdir(itm):
             series_dir_files = os.listdir(itm)
             series_dir_files = [os.path.join(itm,x) for x in series_dir_files]
             for sub_itm in series_dir_files:
-                if os.path.isfile(sub_itm) and 'dicomdir' not in sub_itm.lower():
+                if os.path.isfile(sub_itm):
                     all_files.append(sub_itm)
-    return all_files
+
+    MRI_images = []
+    for file in all_files:
+        try:
+            if pydicom.dcmread(file).SOPClassUID == '1.2.840.10008.5.1.4.1.1.4':
+                MRI_images.append(file)
+        except Exception:
+            pass
+
+    return MRI_images
     
 def get_inference_dict(patient_dict, M, N):
     inference_dict = {}
@@ -54,10 +63,8 @@ def get_inference_dict(patient_dict, M, N):
             normim3 =  ( im3 - np.min(im3) ) / ( np.max(im3) - np.amin(im3) ).astype('float32')
             normalised_newim = np.stack((normim1, normim2, normim3), axis=-1)
             inference_dict[key] = normalised_newim 
-        else:
-            secondary_files.append(this_series)
 
-    return inference_dict, secondary_files
+    return inference_dict
 
 
 def get_philips_ge_dict(files):

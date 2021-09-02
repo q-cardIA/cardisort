@@ -1,6 +1,6 @@
 import numpy as np
 import pydicom
-import sys
+import os,sys
 import pickle
 import tensorflow.keras as tfk
 from skimage.transform import resize
@@ -14,7 +14,11 @@ def main(args):
         return 1
     if len(args) == 2:
         input_dir = args[1]
-        output_dir = f"CardiSorted_{input_dir}"
+        front,back = os.path.split(input_dir)
+        if len(front):
+            output_dir = os.path.join(front, f"CardiSorted_{back}")
+        else:
+            output_dir = f"CardiSorted_{input_dir}"
     if len(args) == 3:
         input_dir = args[1]
         output_dir = args[2]
@@ -50,7 +54,9 @@ def main(args):
     return 0
 
 
+main([1, r"C:\Users\k2038849\Desktop\cardisort\Mri Heart"]) 
+# main([1, r"Mri Heart"]) 
 
-if __name__ == "__main__":
-    main(sys.argv)
-    sys.exit(0)    
+# if __name__ == "__main__":
+#     main(sys.argv)
+#     sys.exit(0)    
