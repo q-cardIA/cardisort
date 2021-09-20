@@ -15,6 +15,7 @@ This assumes that the input folder contains only one CMR study from one patient.
 
 
 If you find this code helpful in your research please cite the following [paper](https://arxiv.org/abs/2109.08479):
+
 Ruth P Lim, Stefan Kachel, Adriana DM Villa, Leighton Kearney, Nuno Bettencourt, Alistair A Young, Amedeo Chiribiri, and Cian M Scannell. CardiSort: a convolutional neural network for cross vendor automated sorting of cardiac MR images. arXiv preprint
 arXiv:2109.08479, 2021.
 
