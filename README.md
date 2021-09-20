@@ -14,11 +14,17 @@ or
 This assumes that the input folder contains only one CMR study from one patient.
 
 
-If you find this code helpful in your research please cite the following paper:
+If you find this code helpful in your research please cite the following [paper](https://arxiv.org/abs/2109.08479):
+Ruth P Lim, Stefan Kachel, Adriana DM Villa, Leighton Kearney, Nuno Bettencourt, Alistair A Young, Amedeo Chiribiri, and Cian M Scannell. CardiSort: a convolutional neural network for cross vendor automated sorting of cardiac MR images. arXiv preprint
+arXiv:2109.08479, 2021.
+
 ```
-@article{lim2021cardisort,
-  title={CardiSort: a convolutional neural network for cross vendor automated sorting of cardiac MR images},
-  author={Lim, Ruth P, and Kachel, Stefan, and Villa, Adriana DM, and Kearney, Leighton, and Bettencourt, Nuno, and Young, Alistair A, and Chiribiri, Amedeo,  and Scannell, Cian M},
-  year={under review}
+@misc{lim2021cardisort,
+      title={CardiSort: a convolutional neural network for cross vendor automated sorting of cardiac MR images}, 
+      author={Ruth P Lim and Stefan Kachel and Adriana DM Villa and Leighton Kearney and Nuno Bettencourt and Alistair A Young and Amedeo Chiribiri and Cian M Scannell},
+      year={2021},
+      eprint={2109.08479},
+      archivePrefix={arXiv},
+      primaryClass={eess.IV}
 }
 ```
