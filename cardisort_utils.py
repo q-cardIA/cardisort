@@ -5,7 +5,9 @@ import cv2
 
 def write_sorted(list_of_files, out_fold, seq, plane, series_no):
 
-    this_seq_fold_series = os.path.join(out_fold, f"{seq}_{plane}", f"series{int(series_no)}")
+    # this_seq_fold_series = os.path.join(out_fold, f"{seq}_{plane}", f"series{int(series_no)}")
+    this_seq_fold_series = os.path.join(out_fold, f"{seq}_{plane}", str(list_of_files[0].SeriesDescription))
+
     if not os.path.exists(this_seq_fold_series):
         os.makedirs(this_seq_fold_series)
     for ii,file in enumerate(list_of_files):
@@ -58,9 +60,9 @@ def get_inference_dict(patient_dict, M, N):
                     im3 = this_series_ims[2].pixel_array
                     im3 = cv2.resize(im3, dsize=(M, N), interpolation=cv2.INTER_LINEAR) 
 
-            normim1 =  ( im1 - np.min(im1) ) / ( np.max(im1) - np.amin(im1) ).astype('float32')
-            normim2 =  ( im2 - np.min(im2) ) / ( np.max(im2) - np.amin(im2) ).astype('float32')
-            normim3 =  ( im3 - np.min(im3) ) / ( np.max(im3) - np.amin(im3) ).astype('float32')
+            normim1 =  ( im1 - np.min(im1) ) / ( np.max(im1) - np.amin(im1) + 1e-6 ).astype('float32')
+            normim2 =  ( im2 - np.min(im2) ) / ( np.max(im2) - np.amin(im2) + 1e-6 ).astype('float32')
+            normim3 =  ( im3 - np.min(im3) ) / ( np.max(im3) - np.amin(im3) + 1e-6 ).astype('float32')
             normalised_newim = np.stack((normim1, normim2, normim3), axis=-1)
             inference_dict[key] = normalised_newim 
 

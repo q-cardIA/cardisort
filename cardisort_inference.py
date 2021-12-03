@@ -7,6 +7,8 @@ from skimage.transform import resize
 
 import cardisort_utils
 
+M = 256
+N = 256
 def main(args):
 
     if len(args) < 2:
@@ -14,22 +16,44 @@ def main(args):
         return 1
     if len(args) == 2:
         input_dir = args[1]
-        front,back = os.path.split(input_dir)
-        if len(front):
+        if 'cardisort' in input_dir.lower():
+            return 1
+        all_patient_items = os.listdir(input_dir)
+        if len(all_patient_items) == 1:
+            itm = all_patient_items[0]
+            if os.path.isdir(itm):
+                input_dir = os.path.join(input_dir, itm)
+
+        front, back = os.path.split(input_dir)
+        if len(back):
             output_dir = os.path.join(front, f"CardiSorted_{back}")
         else:
             output_dir = f"CardiSorted_{input_dir}"
     if len(args) == 3:
         input_dir = args[1]
+        if 'cardisort' in input_dir.lower():
+            return 1
+        all_patient_items = os.listdir(input_dir)
+        if len(all_patient_items) == 1:
+            itm = all_patient_items[0]
+            if os.path.isdir(itm):
+                input_dir = os.path.join(input_dir, itm)
+
         output_dir = args[2]
 
-    M = 256
-    N = 256
+    front, back = os.path.split(input_dir)
+    if len(back):
+        if back[0] == '_'or back[0] == '.':
+            return 1
+    else:
+        if input_dir[0] == '_'or input_dir[0] == '.':
+            return 1        
+
     cardisort_model = tfk.models.load_model('cardisort_model.ckpt')
-    pickle_in = open("seq_categories.pickle","rb")
-    seq_categories = pickle.load(pickle_in)
-    pickle_in = open("plane_categories.pickle","rb")
-    plane_categories = pickle.load(pickle_in)
+    with open("seq_categories.pickle","rb") as pickle_in:
+        seq_categories = pickle.load(pickle_in)
+    with open("plane_categories.pickle","rb") as pickle_in:
+        plane_categories = pickle.load(pickle_in)
 
     all_files = cardisort_utils.get_files(input_dir)
 
